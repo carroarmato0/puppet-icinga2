@@ -7,9 +7,9 @@
 # Coming soon...
 #
 # === Examples
-# 
+#
 # Coming soon...
-# 
+#
 
 class icinga2::server (
   $manage_repos = $icinga2::params::manage_repos,
@@ -25,15 +25,15 @@ class icinga2::server (
 
   #Pick set the right path where we can find the DB schema based on the OS...
   case $operatingsystem {
-    'RedHat', 'CentOS': {      
+    'RedHat', 'CentOS': {
       #...and database that the user picks
       case $server_db_type {
         'mysql': { $server_db_schema_path = '/usr/share/doc/icinga2-ido-mysql-2.0.0/schema/mysql.sql' }
         'pgsql': { $server_db_schema_path = '/usr/share/doc/icinga2-ido-pgsql-2.0.0/schema/pgsql.sql' }
       }
     }
-    
-    #Debian/Ubuntu systems: 
+
+    #Debian/Ubuntu systems:
     /^(Debian|Ubuntu)$/: {
       #Pick set the right path where we can find the DB schema
       case $server_db_type {
@@ -41,17 +41,17 @@ class icinga2::server (
         'pgsql': { $server_db_schema_path = '/usr/share/icinga2-ido-pgsql/schema/pgsql.sql' }
       }
     }
-    
+
     #Fail if we're on any other OS:
     default: { fail("${operatingsystem} is not supported!") }
   }
 
 
-  #Apply our classes in the right order. Use the squiggly arrows (~>) to ensure that the 
-  #class left is applied before the class on the right and that it also refreshes the 
+  #Apply our classes in the right order. Use the squiggly arrows (~>) to ensure that the
+  #class left is applied before the class on the right and that it also refreshes the
   #class on the right.
   class {'icinga2::server::install':} ~>
   class {'icinga2::server::config':} ~>
   class {'icinga2::server::service':}
-  
+
 }

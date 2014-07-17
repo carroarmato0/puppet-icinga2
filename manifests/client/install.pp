@@ -4,10 +4,10 @@
 #
 
 class icinga2::client::install inherits icinga2::client {
-  
+
   include icinga2::client
-  #Apply our subclasses in the right order. Use the squiggly arrows (~>) to ensure that the 
-  #class left is applied before the class on the right and that it also refreshes the 
+  #Apply our subclasses in the right order. Use the squiggly arrows (~>) to ensure that the
+  #class left is applied before the class on the right and that it also refreshes the
   #class on the right.
   class {'icinga2::client::install::repos':} ~>
   class {'icinga2::client::install::packages':} ~>
@@ -18,7 +18,7 @@ class icinga2::client::install inherits icinga2::client {
 #Package repositories
 ##################
 class icinga2::client::install::repos inherits icinga2::client {
-  
+
   include icinga2::client
   #repository resources here
 
@@ -42,7 +42,7 @@ class icinga2::client::install::packages inherits icinga2::client {
 ##################
 # Execs
 ##################
-class icinga2::client::install::execs { 
+class icinga2::client::install::execs {
 
   #exec resources here
 

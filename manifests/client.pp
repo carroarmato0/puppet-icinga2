@@ -14,9 +14,9 @@ class icinga2::client (
   $nrpe_allowed_hosts      = $icinga2::params::nrpe_allowed_hosts
 
 ) inherits icinga2::params {
-  
-  #Apply our classes in the right order. Use the squiggly arrows (~>) to ensure that the 
-  #class left is applied before the class on the right and that it also refreshes the 
+
+  #Apply our classes in the right order. Use the squiggly arrows (~>) to ensure that the
+  #class left is applied before the class on the right and that it also refreshes the
   #class on the right.
   class {'icinga2::client::install':} ~>
   class {'icinga2::client::config':} ~>
