@@ -45,7 +45,7 @@ class icinga2::params {
   #Database paramters
   $db_name = 'icinga2_data'
   $db_user = 'icinga2'
-  $db_password = 'password'
+  $db_password = hiera('db_pwd')
   $db_host = 'localhost'
 
   ##############################
